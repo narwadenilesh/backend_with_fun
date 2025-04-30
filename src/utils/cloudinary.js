@@ -4,8 +4,8 @@ import fs from "fs";
 cloudinary.config({ 
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
     api_key: process.env.CLOUDINARY_API_KEY, 
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
+    api_secret: process.env.CLOUDINARY_API_SECRET 
+  });
 
 
 const uploadOncloudinary = async (LocalFilePath)=>{
@@ -16,7 +16,7 @@ const uploadOncloudinary = async (LocalFilePath)=>{
             resource_type : "auto"
         })
         // file has bee uploaded successfully
-        console.log("File is uploaded on cloudinary", response.url);
+        fs.unlinkSync(LocalFilePath)
         return response;
     } catch (error) {
         fs.unlinkSync(LocalFilePath)  // remove the locally saved file as the upload
@@ -38,4 +38,4 @@ const uploadOncloudinary = async (LocalFilePath)=>{
 
 
 
-export {uploadOncloudinary}
+export {uploadOncloudinary} 
